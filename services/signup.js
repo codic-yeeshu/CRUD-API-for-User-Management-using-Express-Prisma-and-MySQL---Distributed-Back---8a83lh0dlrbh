@@ -9,7 +9,7 @@ const signup = async (req, res) => {
         .status(400)
         .json({ error: `${email ? "Password" : "Email"} is required` });
 
-    const existingUser = prisma.user.findFirst({
+    const existingUser = await prisma.user.findFirst({
       where: {
         email,
       },
@@ -21,7 +21,7 @@ const signup = async (req, res) => {
       });
 
     const hashedPass = await bcrypt.hash(password, 10);
-    const newUser = prisma.user.create({
+    const newUser = await prisma.user.create({
       name,
       email,
       password: hashedPass,
