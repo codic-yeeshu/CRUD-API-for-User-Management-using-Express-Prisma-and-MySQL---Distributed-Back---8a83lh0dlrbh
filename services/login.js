@@ -22,10 +22,12 @@ const login = async (req, res) => {
 
     // checking for password
     const passCheck = await bcrypt.compare(password, user.password);
-    if (!passCheck)
+
+    if (!passCheck) {
       return res.status(401).json({
         error: "Invalid credentials",
       });
+    }
 
     // generating jwt token
     const token = jwt.sign(
