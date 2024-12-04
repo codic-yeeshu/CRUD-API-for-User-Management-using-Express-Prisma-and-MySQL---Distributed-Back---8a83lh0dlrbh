@@ -33,7 +33,7 @@ const login = async (req, res) => {
     const token = jwt.sign(
       {
         email: user.email,
-        id: user.id,
+        userId: user.id,
       },
       secret,
       { expiresIn: "1d" }
