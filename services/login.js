@@ -9,7 +9,7 @@ const login = async (req, res) => {
   try {
     //   input validation
     if (!email || !password)
-      return res.status(400).json({ error: `Email and Password are required` });
+      return res.status(400).json({ error: `Email and password are required` });
 
     // looking for existing user
     const user = await prisma.user.findFirst({ where: { email } });
